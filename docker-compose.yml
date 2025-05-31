@@ -1,0 +1,16 @@
+version: "3.0"
+services:
+  app:
+    container_name: biblio-next
+    image: node:lts-alpine
+    working_dir: /home/node/app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/home/node/app
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=100
+    command: "npm run dev"
+    tty: true
