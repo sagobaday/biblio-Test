@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Olivia",
+    "rating": "2",
+    "review": "could've been better",
+    "timestamp": "2025-05-31T21:00:13.904Z"
+  },
+  {
+    "name": "Joe",
+    "rating": "4",
+    "review": "Had high expectations, which the book delivered. Ending was predictable tho",
+    "timestamp": "2025-05-31T21:01:21.481Z"
+  },
+  {
+    "name": "Callie",
+    "rating": "5",
+    "review": "10/10 can recommend it to everyone!!",
+    "timestamp": "2025-05-31T21:02:47.867Z"
+  }
+]
