@@ -16,5 +16,41 @@
     "rating": "5",
     "review": "10/10 can recommend it to everyone!!",
     "timestamp": "2025-05-31T21:02:47.867Z"
+  },
+  {
+    "name": "Malik",
+    "rating": "5",
+    "review": "changed my view of life, can recommend it to everyone",
+    "timestamp": "2025-06-03T17:15:40.033Z"
+  },
+  {
+    "name": "John",
+    "rating": "3",
+    "review": "was readable, but could have been better",
+    "timestamp": "2025-06-03T17:23:18.555Z"
+  },
+  {
+    "name": "Brian",
+    "rating": "4",
+    "review": "loved it, best book I've read this year",
+    "timestamp": "2025-06-03T17:25:42.926Z"
+  },
+  {
+    "name": "Nina",
+    "rating": "4",
+    "review": "loved the plot, ending was kinda predictable tho",
+    "timestamp": "2025-06-03T17:29:32.743Z"
+  },
+  {
+    "name": "Sara",
+    "rating": "5",
+    "review": "I just sobbed for 10 min straight",
+    "timestamp": "2025-06-03T17:31:33.646Z"
+  },
+  {
+    "name": "Emma",
+    "rating": "5",
+    "review": "This is genuinely one of the most remarkable novels I have ever read. It is a favorite of the year, it will be a favorite of all time.",
+    "timestamp": "2025-06-03T18:16:22.771Z"
   }
 ]
