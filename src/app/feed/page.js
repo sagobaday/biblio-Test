@@ -1,5 +1,7 @@
+
 import fs from 'fs';
 import path from 'path';
+import Link from 'next/link';
 
 export default function FeedPage() {
   const filePath = path.join(process.cwd(), 'src/data/library.json');
@@ -49,9 +51,11 @@ export default function FeedPage() {
             <p><strong>Description:</strong> {book.description}</p>
             <p><strong>Genre:</strong> {book.genre}</p>
             <p><strong>Rating:</strong> {book.rating} / 5</p>
-            <a href={`/books/${book.book_id}`}>View Details</a>
+            <a href={`/read-review/${book.book_id}`}>View Details</a>
+
           </li>
         ))}
+
       </ul>
     </div>
   );
