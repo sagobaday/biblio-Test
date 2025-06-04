@@ -1,5 +1,5 @@
 export default function ThanksPage({ searchParams }) {
-    const { name, rating, review } = searchParams;
+    const { name, rating, review, bookId } = searchParams;
     return (
       <div className="container">
         <h1>Thank you, {name}!</h1>
@@ -7,7 +7,7 @@ export default function ThanksPage({ searchParams }) {
         <p>Your review:</p>
         <blockquote>{review}</blockquote>
         <p>
-          <a href="/reviews" style={{
+          <a href = {`/read-review/${bookId}`} style={{
             padding: '0.5em 1em',
             backgroundColor: '#1969d2',
             color: 'white',

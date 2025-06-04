@@ -51,7 +51,7 @@ export default function FeedPage() {
             <p><strong>Description:</strong> {book.description}</p>
             <p><strong>Genre:</strong> {book.genre}</p>
             <p><strong>Rating:</strong> {book.rating} / 5</p>
-            <a href={`/read-review/${book.book_id}`}>View Details</a>
+            <a href={`/books/${book.book_id}`}>View Details</a>
 
           </li>
         ))}

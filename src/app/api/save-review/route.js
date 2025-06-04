@@ -28,7 +28,7 @@ export async function POST(req) {
   return new Response(null, {
     status: 303,
     headers: {
-      Location: "/thanks?" + new URLSearchParams({ name, rating, review }),
+      Location: "/thanks?" + new URLSearchParams({ name, rating, review, bookId }),
     },
   });  
 }
