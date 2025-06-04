@@ -8,6 +8,7 @@ export default function ThanksPage() {
   const name = searchParams.get('name');
   const rating = searchParams.get('rating');
   const review = searchParams.get('review');
+  const bookId = searchParams.get('bookId');
 
   return (
     <div className="container">
@@ -17,7 +18,7 @@ export default function ThanksPage() {
       <blockquote>{review}</blockquote>
       <p>
         <a
-          href="/reviews"
+          href={`/read-review/${bookId}`}
           style={{
             padding: '0.5em 1em',
             backgroundColor: '#1969d2',
