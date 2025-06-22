@@ -1,9 +1,0 @@
-version: "3.0"
-services:
-  app:
-    container_name: biblio-next
-    ports:
-      - "3000:3000"
-    volumes:
-       - .:/app
-       - /app/node_modules
