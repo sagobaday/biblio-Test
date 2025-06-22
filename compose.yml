@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: biblio-backend
+    restart: always
+    environment:
+      DB_NAME: bibliodb
+      MONGO_INITDB_DATABASE: bibliodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-data:/data/db 
+      - ./biblio-backend/seed-mongodb.js:/docker-entrypoint-initdb.d/seed-mongodb.js
