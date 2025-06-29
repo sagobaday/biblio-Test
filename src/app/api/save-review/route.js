@@ -8,22 +8,33 @@ export async function POST(req) {
   const review = formData.get("review");
   const bookId = formData.get("bookId"); 
 
-  const reviewsPath = path.join(process.cwd(), 'public/reviews.json');
-  let reviews = [];
+  const filePath = path.join(process.cwd(), 'src/data/library.json');
+  const fileData = fs.readFileSync(filePath, 'utf8');
+  const books = JSON.parse(fileData);
 
-  try {
-    reviews = JSON.parse(fs.readFileSync(reviewsPath, 'utf8'));
-  } catch {}
+  const book = books.find((b) => b.book_id.toString() === bookId);
 
-  reviews.push({ 
-    name, 
-    rating, 
-    review, 
-    bookId, 
-    timestamp: new Date() 
-  });
+  if (!book) {
+    return new Response(JSON.stringify({ error: 'Book not found' }), {
+      status: 404,
+    });
+  }
 
-  fs.writeFileSync(reviewsPath, JSON.stringify(reviews, null, 2));
+  const newReview = {
+    review_id: Date.now(),
+    reviewer: name,
+    review_rating: rating,
+    review_text: review,
+    review_date: new Date().toISOString().split('T')[0],
+  };
+
+  if (!book.reviews) {
+    book.reviews = [];
+  }
+
+  book.reviews.push(newReview);
+
+  fs.writeFileSync(filePath, JSON.stringify(books, null, 2));
 
   return new Response(null, {
     status: 303,
@@ -34,11 +45,11 @@ export async function POST(req) {
 }
 
 export async function GET() {
-  const reviewsPath = path.join(process.cwd(), 'public/reviews.json');
+  const filePath = path.join(process.cwd(), 'src/data/library.json');
   
   try {
-    const reviews = fs.readFileSync(reviewsPath, 'utf8');
-    return new Response(reviews, {
+    const books = fs.readFileSync(filePath, 'utf8');
+    return new Response(books, {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
