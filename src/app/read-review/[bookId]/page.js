@@ -2,9 +2,13 @@ import mongoose from 'mongoose';
 import { Book } from '../../../../model/Book';
 
 export default async function BookDetails({ params }) {
-  await mongoose.connect('mongodb://localhost:27017/bibliodb');
+  const { bookId } = params;
 
-  const book = await Book.findOne({ book_id: parseInt(params.bookId) }).lean();
+  if (mongoose.connection.readyState !== 1) {
+    await mongoose.connect('mongodb://localhost:27017/bibliodb');
+  }
+
+  const book = await Book.findOne({ book_id: parseInt(bookId) }).lean();
 
   if (!book) {
     return <h1>404 - Book Not Found</h1>;

@@ -1,8 +1,9 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function ThanksPage() {
+function ThanksPageContent() {
   const searchParams = useSearchParams();
 
   const name = searchParams.get('name');
@@ -31,5 +32,13 @@ export default function ThanksPage() {
         </a>
       </p>
     </div>
+  );
+}
+
+export default function ThanksPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ThanksPageContent />
+    </Suspense>
   );
 }

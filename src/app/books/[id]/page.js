@@ -6,6 +6,10 @@ export default async function BookDetail({ params }) {
   const res = await fetch(`http://localhost:3000/api/books/${id}`, {
     cache: 'no-store'
   });
+  if (!res.ok) {
+    console.error('Failed to fetch book:', res.status);
+    return <div>Book not found</div>;
+  }
 
   const book = await res.json();
 

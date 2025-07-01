@@ -6,7 +6,7 @@ export async function GET(_, { params }) {
   const { id } = params;
 
   if (mongoose.connection.readyState !== 1) {
-    await mongoose.connect('mongodb://localhost:27017/bibliodb');
+    await mongoose.connect('mongodb://localhost:27017/bibliodb')
   }
 
   try {

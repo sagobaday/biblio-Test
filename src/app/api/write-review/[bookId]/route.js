@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import { Book } from '@/model/Book';
+import { Book } from '../../../../../model/Book';
 
 export async function POST(req, { params }) {
   const { bookId } = params;
   const { reviewer, text, rating } = await req.json();
 
   if (mongoose.connection.readyState !== 1) {
-    await mongoose.connect('mongodb://localhost:27017/bibliodb');
+    await mongoose.connect('mongodb://localhost:27017/bibliodb')
   }
 
   const book = await Book.findOne({ book_id: parseInt(bookId) });
