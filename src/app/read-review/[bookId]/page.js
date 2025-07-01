@@ -1,23 +1,10 @@
-// src/app/read-review/[bookId]/page.js
+import mongoose from 'mongoose';
+import { Book } from '../../../../model/Book';
 
-import fs from 'fs';
-import path from 'path';
+export default async function BookDetails({ params }) {
+  await mongoose.connect('mongodb://localhost:27017/bibliodb');
 
-export async function generateStaticParams() {
-  const filePath = path.join(process.cwd(), 'src/data/library.json');
-  const data = fs.readFileSync(filePath, 'utf8');
-  const books = JSON.parse(data);
-
-  return books.map((book) => ({
-    bookId: book.book_id.toString(),
-  }));
-}
-
-export default function BookDetails({ params }) {
-  const filePath = path.join(process.cwd(), 'src/data/library.json');
-  const data = fs.readFileSync(filePath, 'utf8');
-  const books = JSON.parse(data);
-  const book = books.find((b) => b.book_id.toString() === params.bookId);
+  const book = await Book.findOne({ book_id: parseInt(params.bookId) }).lean();
 
   if (!book) {
     return <h1>404 - Book Not Found</h1>;
@@ -36,7 +23,7 @@ export default function BookDetails({ params }) {
       <ul>
         {book.reviews.map((review) => (
           <li key={review.review_id} style={{ marginBottom: 10 }}>
-            <p><strong>{review.reviewer}</strong> ({review.review_date})</p>
+            <p><strong>{review.reviewer}</strong> ({new Date(review.review_date).toLocaleDateString()})</p>
             <p>Rating: {review.review_rating}/5</p>
             <p>{review.review_text}</p>
           </li>

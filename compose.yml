@@ -10,4 +10,5 @@ services:
       - 27017:27017
     volumes:
       - ./mongo-data:/data/db 
-      - ./biblio-backend/seed-mongodb.js:/docker-entrypoint-initdb.d/seed-mongodb.js
+      - ./.docker/biblio-backend/seed.js:/docker-entrypoint-initdb.d/seed.js
+    

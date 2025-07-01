@@ -1,5 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
+import { Book } from '../../../../model/Book';
 
 export async function POST(req) {
   const formData = await req.formData();
@@ -8,22 +9,29 @@ export async function POST(req) {
   const review = formData.get("review");
   const bookId = formData.get("bookId"); 
 
-  const reviewsPath = path.join(process.cwd(), 'public/reviews.json');
-  let reviews = [];
+    await mongoose.connect('mongodb://localhost:27017/bibliodb');
 
-  try {
-    reviews = JSON.parse(fs.readFileSync(reviewsPath, 'utf8'));
-  } catch {}
+    const book = await Book.findOne({ book_id: parseInt(bookId) });
+  if (!book) {
+    return NextResponse.json({ error: 'Book not found' }, { status: 404 });
+  }
 
-  reviews.push({ 
-    name, 
-    rating, 
-    review, 
-    bookId, 
-    timestamp: new Date() 
-  });
+  const newReview = {
+    review_id: Date.now(),
+    reviewer: name,
+    review_rating: rating,
+    review_text: review,
+    review_date: new Date().toISOString().split('T')[0],
+  };
 
-  fs.writeFileSync(reviewsPath, JSON.stringify(reviews, null, 2));
+  book.reviews.push(newReview);
+
+  const total = book.reviews.reduce((sum, r) => sum + Number(r.review_rating), 0);
+  book.rating = total / book.reviews.length;
+
+  await book.save();
+
+  const params = new URLSearchParams({ name, rating, review, bookId });
 
   return new Response(null, {
     status: 303,
@@ -31,19 +39,4 @@ export async function POST(req) {
       Location: "/thanks?" + new URLSearchParams({ name, rating, review, bookId }),
     },
   });  
-}
-
-export async function GET() {
-  const reviewsPath = path.join(process.cwd(), 'public/reviews.json');
-  
-  try {
-    const reviews = fs.readFileSync(reviewsPath, 'utf8');
-    return new Response(reviews, {
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (error) {
-    return new Response(JSON.stringify([]), {
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
 }
