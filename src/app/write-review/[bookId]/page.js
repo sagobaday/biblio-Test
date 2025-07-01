@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 
 export default function ReviewFormPage() {
-  const params = useParams();
-  const bookId = params.bookId;
+  const { bookId } = useParams();
   const [rating, setRating] = useState(0);
 
   return (
@@ -14,9 +13,12 @@ export default function ReviewFormPage() {
         <h2>Write a Review</h2>
 
         <form action="/api/save-review" method="POST" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <input type="hidden" name="bookId" value={bookId} />
+          <input type="hidden" name="bookId" value={bookId} />
+          <input type="hidden" name="rating" value={rating} />
+
           <label htmlFor="name" style={{ alignSelf: 'flex-start' }}>Name:</label>
           <input type="text" id="name" name="name" required style={{ width: '100%', marginBottom: '1rem' }} />
+
           <div style={{ marginTop: '1rem', width: '100%' }}>
             <label style={{ display: 'block', textAlign: 'left' }}>Rate this book</label>
             <div className="stars" style={{ marginBottom: '1rem' }}>
@@ -24,7 +26,6 @@ export default function ReviewFormPage() {
                 <span
                   key={n}
                   className={`star${n <= rating ? ' selected' : ''}`}
-                  data-value={n}
                   style={{ cursor: 'pointer', fontSize: '2rem', color: n <= rating ? 'goldenrod' : 'lightgray' }}
                   onClick={() => setRating(n)}
                 >
@@ -33,8 +34,6 @@ export default function ReviewFormPage() {
               ))}
             </div>
           </div>
-
-          <input type="hidden" name="rating" value={rating} />
 
           <div style={{ marginTop: '1rem', width: '100%' }}>
             <label htmlFor="review" style={{ display: 'block', textAlign: 'left' }}>Your Comment</label>

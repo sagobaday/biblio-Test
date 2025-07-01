@@ -1,17 +1,15 @@
-import fs from 'fs';
-import path from 'path';
 import Image from 'next/image';
 
 export default async function BookDetail({ params }) {
-  const { id } = await params;
+  const { id } = params;
 
-  const filePath = path.join(process.cwd(), 'src/data/library.json');
-  const data = fs.readFileSync(filePath, 'utf8');
-  const books = JSON.parse(data);
+  const res = await fetch(`http://localhost:3000/api/books/${id}`, {
+    cache: 'no-store'
+  });
 
-  const book = books.find((b) => b.book_id === parseInt(id));
+  const book = await res.json();
 
-  if (!book) {
+  if (!book || book.error) {
     return <div>Book not found</div>;
   }
 
@@ -26,7 +24,7 @@ export default async function BookDetail({ params }) {
         <h4>Description</h4>
         <p>{book.description}</p>
         <a href={`/read-review/${book.book_id}`}>
-        <button>Reviews ({book.reviews.length})</button>
+          <button>Reviews ({book.reviews.length})</button>
         </a>
         <p>
           Average Rating:{' '}
@@ -40,7 +38,7 @@ export default async function BookDetail({ params }) {
       <div className="right-side">
         <Image src={book.image_url} alt={book.title} width={500} height={700} />
         <a href={`/write-review/${book.book_id}`}>
-        <button>＋</button>
+          <button>＋</button>
         </a>
       </div>
     </div>
