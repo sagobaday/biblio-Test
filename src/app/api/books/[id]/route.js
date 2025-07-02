@@ -2,11 +2,13 @@ import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { Book } from '../../../../../model/Book';
 
+const mongoUri = process.env.MONGO_URI;
+
 export async function GET(_, { params }) {
   const { id } = params;
 
   if (mongoose.connection.readyState !== 1) {
-    await mongoose.connect('mongodb://localhost:27017/bibliodb')
+    await mongoose.connect(mongoUri);
   }
 
   try {

@@ -11,4 +11,12 @@ services:
     volumes:
       - ./mongo-data:/data/db 
       - ./.docker/biblio-backend/seed.js:/docker-entrypoint-initdb.d/seed.js
-    
+  app:
+    build: .
+    container_name: biblio-frontend
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URI: mongodb://mongo:27017/bibliodb
+    depends_on:
+      - mongo

@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { Book } from '../../../../model/Book';
 
+const mongoUri = process.env.MONGO_URI;
+
 export async function POST(req) {
   const formData = await req.formData();
   const name = formData.get("name");
@@ -9,7 +11,9 @@ export async function POST(req) {
   const review = formData.get("review");
   const bookId = formData.get("bookId"); 
 
-    await mongoose.connect('mongodb://localhost:27017/bibliodb');
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(mongoUri);
+    }
 
     const book = await Book.findOne({ book_id: parseInt(bookId) });
   if (!book) {

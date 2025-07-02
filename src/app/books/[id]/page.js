@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export default async function BookDetail({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   const res = await fetch(`http://localhost:3000/api/books/${id}`, {
     cache: 'no-store'

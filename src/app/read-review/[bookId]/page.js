@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Book } from '../../../../model/Book';
 
 export default async function BookDetails({ params }) {
-  const { bookId } = params;
+  const { bookId } = await params;
 
   if (mongoose.connection.readyState !== 1) {
     await mongoose.connect('mongodb://localhost:27017/bibliodb');
