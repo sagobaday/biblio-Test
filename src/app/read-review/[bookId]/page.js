@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Book } from '../../../../model/Book';
+import Image from 'next/image';
 
 export default async function BookDetails({ params }) {
   const { bookId } = await params;
@@ -24,7 +25,7 @@ export default async function BookDetails({ params }) {
   return (
     <div style={{ padding: 20 }}>
       <h1>{book.title}</h1>
-      <img src={book.image_url} alt={book.title} style={{ width: 200 }} />
+      <Image src={book.image_url} alt={book.title} width={200} height={300} />
       <p><strong>Author:</strong> {book.author}</p>
       <p>{book.description}</p>
       <p><strong>Genre:</strong> {book.genre}</p>
