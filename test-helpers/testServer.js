@@ -1,6 +1,6 @@
 /* 
-A helper server (testServer.js) spins up a lightweight Express 
-app connected to an in‑memory MongoDB instance. 
+A helper server (testServer.js) spins up a lightweight Express app 
+connected to an in‑memory MongoDB instance. 
 
 Each test can start a new server, populate data, and shut it down afterward.
 
