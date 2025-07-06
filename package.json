@@ -26,6 +26,9 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "jest": "^30.0.4",
+    "mockingoose": "^2.16.2",
+    "mongodb-memory-server": "^10.1.4",
+    "supertest": "^7.1.1",
     "ts-jest": "^29.4.0",
     "typescript": "^5"
   },
