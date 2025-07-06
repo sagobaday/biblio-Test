@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function FeedPage() {
   const res = await fetch('http://localhost:3000/api/books', {
@@ -47,7 +48,19 @@ export default async function FeedPage() {
         ) : (
           books.map((book) => (
             <li className="card" key={book._id}>
-              <img src={book.image_url} alt="Book cover" />
+              <Image
+                src={book.image_url}
+                alt="Book cover"
+                width={300}
+                height={300}
+                style={{
+                  width: '100%',
+                  height: '300px',
+                  objectFit: 'cover',
+                  borderRadius: '6px',
+                  marginBottom: '10px',
+                }}
+              />
               <h2>{book.title}</h2>
               <p><strong>Author:</strong> {book.author}</p>
               <p><strong>Description:</strong> {book.description}</p>

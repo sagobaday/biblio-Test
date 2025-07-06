@@ -26,7 +26,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "jest": "^30.0.4",
-    "mockingoose": "^2.16.2",
     "ts-jest": "^29.4.0",
     "typescript": "^5"
   },
