@@ -22,7 +22,7 @@ export async function POST(req, { params }) {
     reviewer,
     review_text: text,
     review_date: new Date().toISOString().split('T')[0],
-    rating: parseInt(rating)
+    review_rating: parseInt(rating)
   };
 
   if (!Array.isArray(book.reviews)) {
@@ -31,7 +31,7 @@ export async function POST(req, { params }) {
 
   book.reviews.push(newReview);
 
-  const total = book.reviews.reduce((sum, r) => sum + (r.rating || 0), 0);
+  const total = book.reviews.reduce((sum, r) => sum + (r.review_rating || 0), 0);
   book.rating = total / book.reviews.length;
 
   await book.save();
