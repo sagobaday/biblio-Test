@@ -4,8 +4,15 @@ import { Book } from '../../../../model/Book';
 export default async function BookDetails({ params }) {
   const { bookId } = await params;
 
+  const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/bibliodb';
+
   if (mongoose.connection.readyState !== 1) {
-    await mongoose.connect('mongodb://localhost:27017/bibliodb');
+    try {
+      await mongoose.connect(mongoUri);
+    } catch (err) {
+      console.error('Failed to connect to MongoDB:', err);
+      return <h1>Database connection failed</h1>;
+    }
   }
 
   const book = await Book.findOne({ book_id: parseInt(bookId) }).lean();
