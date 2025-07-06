@@ -139,6 +139,9 @@ async function setupTestApp() {
 
 async function teardown({ mongoServer }) {
   await mongoose.disconnect();
+  // Clear model cache so subsequent tests can re-register schemas
+  mongoose.models = {};
+  mongoose.connection.models = {};
   if (mongoServer) {
     await mongoServer.stop();
   }
