@@ -1,4 +1,29 @@
+/* 
+E2E tests (__tests__/e2e/api.test.js) spin up a lightweight Express server backed by an in‑memory MongoDB instance. 
+This test server is created in test-helpers/testServer.js. 
+The helper defines simple Mongoose models and routes corresponding to the API (list books, post reviews, update reading lists, submit swap requests).
+The E2E test suite verifies the Express routes and interactions with MongoDB through a realistic workflow.
+
+The E2E test then performs the following:
+
+- Insert sample books and verify pagination/filters when requesting /api/books.
+
+- Post a review (authenticated via a cookie) and check that the book’s average rating is updated.
+
+- Attempt to post a review without a cookie and expect a 401 error.
+
+- Update a reading-list item’s status via PATCH /api/reading-list/:id and verify persistence.
+
+- Simulate an email service failure when requesting a book swap; the API should return 502 and not create a swap request.
+
+These steps ensure that the API endpoints behave correctly with database interactions. 
+Lines from the E2E test illustrate the setup and calls being made, 
+for example creating sample books, issuing requests with supertest, and validating responses.
+
+ */
 const request = require('supertest');
+//supertest: Sends HTTP requests to the Express server and inspects the responses.
+
 const { setupTestApp, teardown } = require('../../test-helpers/testServer');
 
 let app;

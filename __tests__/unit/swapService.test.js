@@ -1,3 +1,7 @@
+/* 
+swapService.test.js mocks the book repository and email service to verify swap logic and error cases.
+ */
+
 jest.mock('../../src/repositories/bookRepo');
 jest.mock('../../src/services/emailService');
 

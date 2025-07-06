@@ -1,3 +1,8 @@
+/* 
+CalculateAvgRating.test.js uses mockingoose to mock Mongoose queries 
+and confirms that average rating calculations work for books with and without reviews.
+ */
+
 const mockingoose = require('mockingoose');
 const { Book } = require('../../model/Book');
 const { calculateAvgRating } = require('../../src/services/bookService');

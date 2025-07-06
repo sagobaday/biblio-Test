@@ -23,6 +23,8 @@ npm run dev
 The server runs on http://localhost:3000/ by default.
 
 ## Executing Tests
+install Jest with: 
+    npm i -D jest
 
 Run Jest unit tests with:
 

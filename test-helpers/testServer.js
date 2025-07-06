@@ -13,8 +13,11 @@ A small stub emailService is provided so swap requests can simulate failures.
 
 
 const express = require('express');
+//Express app with Mongoose models: The helper server builds routes and models so the tests can exercise them end‑to‑end.
+
 const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
+const { MongoMemoryServer } = require('mongodb-memory-server'); 
+// MongoMemoryServer: Provides an ephemeral MongoDB instance for each test, so no real database is required.
 
 async function setupTestApp() {
   const mongoServer = await MongoMemoryServer.create();

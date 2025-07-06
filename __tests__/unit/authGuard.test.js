@@ -1,3 +1,12 @@
+/* 
+Unit tests (__tests__/unit/) verify small functions or services in isolation:
+Unit tests cover individual utility functions, middleware, and services.
+
+
+authGuard.test.js checks the authentication middleware 
+and ensures a missing session returns a 401 status.
+ */
+
 const authGuard = require('../../src/middleware/authGuard');
 
 test('unauthenticated request', () => {

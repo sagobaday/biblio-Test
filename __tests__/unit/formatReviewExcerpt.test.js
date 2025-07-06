@@ -1,3 +1,6 @@
+/* 
+formatReviewExcerpt.test.js tests truncation logic for long review texts 
+*/
 const { formatReviewExcerpt } = require('../../src/utils/formatReviewExcerpt');
 
 describe('formatReviewExcerpt', () => {
