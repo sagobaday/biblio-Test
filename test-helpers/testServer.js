@@ -1,3 +1,17 @@
+/* 
+A helper server (testServer.js) spins up a lightweight Express 
+app connected to an in‑memory MongoDB instance. 
+
+Each test can start a new server, populate data, and shut it down afterward.
+
+This helper creates simple Mongoose models (Book, Review, etc.), 
+wires up Express routes for listing books, posting reviews, updating reading‑list items, 
+and handling swap requests. An in‑memory MongoDB (MongoMemoryServer) lets tests run without a real database. 
+A small stub emailService is provided so swap requests can simulate failures.
+
+ */
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
