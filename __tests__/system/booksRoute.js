@@ -7,7 +7,7 @@
  */
 
 const mongoose = require('mongoose');
-const mockingoose = require('mockingoose');
+const mockingoose = require('mockingoose'); 
 const { Book } = require('../../model/Book');
 
 jest.setTimeout(10000);
@@ -31,6 +31,28 @@ test('GET /api/books returns seeded books', async () => {
     [{ book_id: 1, title: 'Book', author: 'A' }],
     'find'
   );
+=======
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const { Book } = require('../../model/Book');
+
+jest.setTimeout(60000);
+let mongoServer;
+
+beforeAll(async () => {
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  process.env.MONGO_URI = uri;
+  await mongoose.connect(uri);
+});
+
+afterAll(async () => {
+  await mongoose.disconnect();
+  if (mongoServer) await mongoServer.stop();
+});
+
+test('GET /api/books returns seeded books', async () => {
+  // Seed fixture
+  await Book.create({ book_id: 1, title: 'Book', author: 'A' });
 
   // Dynamically import the route module (ESM)
   const routeModule = await import('../../src/app/api/books/route.js');
