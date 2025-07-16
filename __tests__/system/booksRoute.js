@@ -7,6 +7,31 @@
  */
 
 const mongoose = require('mongoose');
+const mockingoose = require('mockingoose'); 
+const { Book } = require('../../model/Book');
+
+jest.setTimeout(10000);
+let originalReadyState;
+
+beforeAll(() => {
+  originalReadyState = mongoose.connection.readyState;
+  mongoose.connection.readyState = 1;
+});
+
+afterAll(() => {
+  mongoose.connection.readyState = originalReadyState;
+});
+
+afterEach(() => {
+  mockingoose.resetAll();
+});
+
+test('GET /api/books returns seeded books', async () => {
+  mockingoose(Book).toReturn(
+    [{ book_id: 1, title: 'Book', author: 'A' }],
+    'find'
+  );
+=======
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { Book } = require('../../model/Book');
 
