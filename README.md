@@ -37,7 +37,7 @@ This command runs all unit, system, and end-to-end tests.
 To run all tests manually, including the new system test that uses `pg-mem`, you can run:
 
 ```bash
-npx cross-env NODE_OPTIONS=--experimental-vm-modules jest __tests__
+npx jest --verbose __tests__/ test you wanna run
 ```
 
 ## Docker Compose
