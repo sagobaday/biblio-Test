@@ -15,7 +15,6 @@ module.exports = {
   testEnvironment: "node",
   transform: {
     ...tsJestTransformCfg,
-    '^.+\\.[jt]sx?$': 'babel-jest',
   },
   coverageProvider: "v8",
   clearMocks: true,
