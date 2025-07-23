@@ -27,7 +27,6 @@
     "jest": "^30.0.4",
     "mockingoose": "^2.16.2",
     "mongodb-memory-server": "^10.1.4",
-    "pg-mem": "^3.0.5",
     "next": "^15.4.1",
     "pg-mem": "^3.0.5",
     "supertest": "^7.1.1",
