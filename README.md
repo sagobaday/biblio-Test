@@ -32,6 +32,12 @@ Run Jest unit tests with:
 npm test
 ```
 
+To run all tests manually, including the new system test that uses `pg-mem`, you can run:
+
+```bash
+npx cross-env NODE_OPTIONS=--experimental-vm-modules jest __tests__
+```
+
 ## Docker Compose
 
 The repository includes a `compose.yml` that provisions both a MongoDB container and the Next.js application. Start both services with:
