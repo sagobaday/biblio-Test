@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
@@ -22,12 +22,12 @@
     "@types/node": "^20.19.8",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "jest": "^30.0.4",
     "mockingoose": "^2.16.2",
     "mongodb-memory-server": "^10.1.4",
+    "pg-mem": "^3.0.5",
     "next": "^15.4.1",
     "pg-mem": "^3.0.5",
     "supertest": "^7.1.1",
